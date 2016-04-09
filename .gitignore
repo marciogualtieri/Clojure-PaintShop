@@ -1,0 +1,8 @@
+.idea
+*.iml
+/target
+/*.txt
+dev-resources
+.hgignore
+/.lein-failures
+/.lein-repl-history
