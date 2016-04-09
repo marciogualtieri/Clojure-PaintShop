@@ -1,8 +1,8 @@
 (ns paintshop.core
-  (:require [clojure.string :as string]
-            [clojure.tools.cli :refer [parse-opts]]
+  (:require [clojure.tools.cli :refer [parse-opts]]
             [clojure.java.io :refer [writer]]
             [slingshot.slingshot :refer [try+]]
+            [paintshop.cli-config :refer :all]
             [paintshop.input-iterator :refer :all]
             [paintshop.input-parser :refer :all]
             [paintshop.output-formatter :refer :all]
@@ -11,7 +11,9 @@
 
 (def LINE_SEPARATOR (System/getProperty "line.separator"))
 
-(defn execute [input-file]
+(defn execute
+  "Parses input file into test cases, process test cases into solutions, format solutions to output and return output."
+  [input-file]
   (let [input-iterator (->PlainTextInputIterator input-file)
         input-parser (->PlainTexFiletInputParser)
         output-formatter (->PlainTextOutputFormatter)]
@@ -23,34 +25,8 @@
     )
   )
 
-(def cli-options
-  [["-o" "--output-file FILE" "Name of the output file. If not provided will print output to console."
-    :id :output-file]
-   ["-h" "--help"]]
-  )
-
-(defn usage [options-summary]
-  (->> ["Usage: java -jar <jar name> <input file> [options]"
-        ""
-        "Options:"
-        options-summary
-        ""
-        "<input-file>: Name of the input file containing test cases."
-        ""]
-       (string/join \newline))
-  )
-
-(defn error-msg [errors]
-  (str "The following errors occurred while parsing your command:\n\n"
-       (string/join \newline errors))
-  )
-
-(defn exit [status msg]
-  (println msg)
-  (System/exit status)
-  )
-
 (defn execute-with-benchmarking [input-file]
+  "Same as execute, but prints total processing time."
   (let [start-time (System/currentTimeMillis)]
     (let [solutions (execute input-file)]
       (let [end-time (System/currentTimeMillis)]

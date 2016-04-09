@@ -34,6 +34,8 @@
         (catch [:type ::cannot-fix-batches] {:keys []} nil))
   )
 
-(defn process-test-cases [test-cases]
+(defn process-test-cases
+  "Process test cases into batches solutions."
+  [test-cases]
   (map process-test-case test-cases)
   )

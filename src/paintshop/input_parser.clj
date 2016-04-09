@@ -11,6 +11,11 @@
 (def ^{:private true} MATTE 1)
 
 (defprotocol InputParser
+  "
+  Parses input to test cases. Concrete records available at the moment:
+
+  - PlainTexFiletInputParser, which parses plain text input following the syntax from the requirements.
+  "
   (parse-input [this input-iterator])
   )
 

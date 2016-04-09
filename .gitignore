@@ -6,3 +6,4 @@ dev-resources
 .hgignore
 /.lein-failures
 /.lein-repl-history
+/README.pdf

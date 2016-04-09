@@ -3,6 +3,11 @@
            [slingshot.slingshot :refer [throw+]]))
 
 (defprotocol InputIterator
+  "
+  Iterates though the input line by line. Concrete record implemenations available so far:
+
+  - PlainTextInputIterator, which iterates through a plain text input file.
+  "
   (read-lines [this])
   )
 

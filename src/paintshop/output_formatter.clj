@@ -3,6 +3,11 @@
   (require [clojure.string :as string]))
 
 (defprotocol OutputFormatter
+  "
+  Formats batches test cases and batches solutions for output. Concrete records available at the moment:
+
+  - PlainTextOutputFormatter, which formats according to the syntax from the requirements.
+  "
   (format-outputs [this test-cases solutions])
   )
 
