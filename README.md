@@ -98,7 +98,7 @@ I could have used ```BigInteger``` in Scala (and Java as well) to achieve a more
 
 Java Interop from Clojure allows me to use ```BitSet``` as well, but I decided to go 100% functional on this project.
 
-For parsing CLI arguments I'm using [tools.cli](https://github.com/clojure/tools.cli). For handling exceptions I'm using [Slingshopt](https://github.com/scgilardi/slingshot), which I feel is nicer than Clojure's standard exception handling.
+For parsing CLI arguments I'm using [tools.cli](https://github.com/clojure/tools.cli). For handling exceptions I'm using [Slingshot](https://github.com/scgilardi/slingshot), which I feel is nicer than Clojure's standard exception handling.
 
 I became interested in function programming after reading [this article by Robert C. Martin](http://thecleancoder.blogspot.ie/2010/08/why-clojure.html), so my first stab at functional programming was Clojure. Along the way I was seduced by Scala, which I really enjoy, so I ended up spending more time playing with Scala more recently. Scala is much easier to learn if you come from a Java's background and Clojure's learning curve is somehow steep (unless you are a LISP or Erlang programmer), but, at present, I can't really choose between the two. They are both breaths of fresh air and have been equally enjoyable. I would gladly switch from my ol' pal Java to Scala or Clojure in a heart beat.
 
