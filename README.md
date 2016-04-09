@@ -132,6 +132,15 @@ Small data set:
     
     Total processing time: 25 ms
 
+Just for fun, here's a table comparing processing times for all the three projects:
+
+| Project | large_dataset_output.txt | small_dataset_output.txt  |
+| ------- |:------------------------:|:-------------------------:|
+| Java    |         28 ms            |         5 ms              |
+| Scala   |         51 ms            |        37 ms              |
+| Clojure |         52 ms            |        25 ms              |
+
+
 ### <a name="how-to-view-this-document"></a> HOW TO VIEW THIS DOCUMENT
 
 This document is better viewed using IntelliJ's Markdown Plugin. In case it isn't available, there is a PDF version of this document in the same directory.

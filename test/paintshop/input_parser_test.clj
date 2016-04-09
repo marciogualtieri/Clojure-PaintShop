@@ -14,12 +14,6 @@
     (is (= TEST-CASES (parse-input INPUT-PARSER SUCCESS-INPUT-ITERATOR)))
     )
 
-  (testing "Input parser throws exception when unexpected end of file."
-    (is (thrown-with-msg? ExceptionInfo
-                          (re-pattern UNEXPECTED-END-OF-FILE-ERROR-MESSAGE)
-                          (realize-sequence (parse-input INPUT-PARSER EOF-INPUT-ITERATOR))))
-    )
-
   (testing "Input parser throws exception when number of test cases is not a number."
     (is (thrown-with-msg? ExceptionInfo
                           (re-pattern (not-a-number-error-message NUM-TEST-CASES-FIELD-NAME (->Line "X" 1)))
