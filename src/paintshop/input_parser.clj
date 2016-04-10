@@ -21,21 +21,21 @@
 
 (defn- parse-number [name line]
   (if (nil? line)
-    (throw+ {:type ::input-parser :message UNEXPECTED-END-OF-FILE-ERROR-MESSAGE})
+    (throw+ {:type ::input-parser-error :message UNEXPECTED-END-OF-FILE-ERROR-MESSAGE})
     )
   (try
     (Integer/parseInt (:value line))
-    (catch NumberFormatException e (throw+ {:type ::input-parser :message (not-a-number-error-message name line)})))
+    (catch NumberFormatException e (throw+ {:type ::input-parser-error :message (not-a-number-error-message name line)})))
   )
 
 (defn- parse-customer-parameters [line]
   (if (nil? line)
-    (throw+ {:type ::input-parser :message UNEXPECTED-END-OF-FILE-ERROR-MESSAGE})
+    (throw+ {:type ::input-parser-error :message UNEXPECTED-END-OF-FILE-ERROR-MESSAGE})
     )
   (try
     (doall (map #(Integer/parseInt %) (string/split (:value line) #" ")))
     (catch NumberFormatException e
-      (throw+ {:type ::input-parser :message (non-numeric-customer-pairs-error-message line)})))
+      (throw+ {:type ::input-parser-error :message (non-numeric-customer-pairs-error-message line)})))
   )
 
 (defn- partition-input-into-test-cases [lines num-test-cases]
@@ -50,12 +50,12 @@
 
 (defn- validate-color [color num-colors line]
   (if (or (< color 1) (> color num-colors))
-    (throw+ {:type ::input-parser :message (invalid-color-code-error-message num-colors line)}))
+    (throw+ {:type ::input-parser-error :message (invalid-color-code-error-message num-colors line)}))
   )
 
 (defn- validate-finish [finish line]
   (if (and (not= finish GLOSSY) (not= finish MATTE))
-    (throw+ {:type ::input-parser :message (invalid-finish-code-error-message line)}))
+    (throw+ {:type ::input-parser-error :message (invalid-finish-code-error-message line)}))
   )
 
 (defn- validate-pairs [pairs num-colors line]
@@ -66,7 +66,7 @@
           (validate-color color num-colors line)
           (validate-finish finish line)
           (if (and (not (nil? matte)) (= finish MATTE))
-            (throw+ {:type ::input-parser :message (more-than-one-matte-color-error-message line)})
+            (throw+ {:type ::input-parser-error :message (more-than-one-matte-color-error-message line)})
             )
           (if (= finish MATTE)
             (recur (next pairs) finish)
@@ -101,7 +101,7 @@
     (let [num-pairs (first parameters)]
       (let [pairs (partition 2 (next parameters))]
         (if (not= num-pairs (count pairs))
-          (throw+ {:type ::input-parser :message (incorrect-number-customer-pairs-error-message line)})
+          (throw+ {:type ::input-parser-error :message (incorrect-number-customer-pairs-error-message line)})
           )
         (validate-pairs pairs num-colors line)
         (let [glossies (parse-glossies pairs) matte (parse-matte pairs)]

@@ -9,7 +9,7 @@
 (defn- fixed-batches [batches customer]
   (if (has-matte? customer)
     (.setBit batches (:matte customer))
-    (throw+ {:type ::cannot-fix-batches}))
+    (throw+ {:type ::fix-batches-error}))
   )
 
 (defn- process-batches [customers batches]
@@ -31,7 +31,7 @@
 
 (defn- process-test-case [test-case]
   (try+ (attempt-to-process-test-case test-case (biginteger 0))
-        (catch [:type ::cannot-fix-batches] {:keys []} nil))
+        (catch [:type ::fix-batches-error] {:keys []} nil))
   )
 
 (defn process-test-cases
