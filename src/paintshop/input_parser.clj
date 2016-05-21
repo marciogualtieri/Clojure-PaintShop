@@ -25,7 +25,8 @@
     )
   (try
     (Integer/parseInt (:value line))
-    (catch NumberFormatException e (throw+ {:type ::input-parser-error :message (not-a-number-error-message name line)})))
+    (catch NumberFormatException e (throw+
+                                     {:type ::input-parser-error :message (not-a-number-error-message name line)})))
   )
 
 (defn- parse-customer-parameters [line]
