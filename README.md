@@ -52,7 +52,7 @@ Which will print the following:
 
 ### <a name="on-the-design-choices"></a> ON THE DESIGN CHOICES
 
-This project mirrors in basic lines the Java one available in the package regarding architecture and algorithm. Please refer to the Java project for details on the design, as well as algorithm analysis.
+This project mirrors in basic lines the Java one available in the package regarding architecture and algorithm. Please refer to [Java-Paintshop](https://github.com/marciogualtieri/Java-PaintShop) for details on the design, as well as algorithm analysis.
 
 Clojure is not an object-oriented language, but still some object-oriented programming principles can be emulated.
 
